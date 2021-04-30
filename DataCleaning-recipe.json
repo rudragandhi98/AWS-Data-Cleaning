@@ -1,0 +1,129 @@
+[
+  {
+    "Action": {
+      "Operation": "DELETE",
+      "Parameters": {
+        "sourceColumns": "[\"Corporate Author\",\"Corporate Contributors\",\"Former owner\",\"Engraver\"]"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "collapseConsecutiveWhitespace": "false",
+        "removeAllPunctuation": "false",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "false",
+        "removeCustomValue": "false",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "false",
+        "removeLetters": "false",
+        "removeNumbers": "true",
+        "removeSpecialCharacters": "true",
+        "sourceColumn": "Place of Publication"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "YEAR",
+      "Parameters": {
+        "functionStepType": "YEAR",
+        "sourceColumn": "Date of Publication",
+        "targetColumn": "Date of Publication_extracted",
+        "units": "year"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "DELETE",
+      "Parameters": {
+        "sourceColumns": "[\"Date of Publication\"]"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "Date of Publication_extracted",
+        "targetColumn": "Date of Publication"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "EXTRACT_PATTERN",
+      "Parameters": {
+        "pattern": "London",
+        "sourceColumn": "Place of Publication",
+        "targetColumn": "Place of Publication_extracted"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_VALUES",
+      "Parameters": {
+        "sourceColumn": "Place of Publication_extracted"
+      }
+    },
+    "ConditionExpressions": [
+      {
+        "Condition": "IS_MISSING",
+        "Value": "string",
+        "TargetColumn": "Place of Publication_extracted"
+      }
+    ]
+  },
+  {
+    "Action": {
+      "Operation": "DELETE",
+      "Parameters": {
+        "sourceColumns": "[\"Place of Publication\"]"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "RENAME",
+      "Parameters": {
+        "sourceColumn": "Place of Publication_extracted",
+        "targetColumn": "Place of Publication"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "REMOVE_COMBINED",
+      "Parameters": {
+        "collapseConsecutiveWhitespace": "false",
+        "customCharacters": "[]",
+        "removeAllPunctuation": "false",
+        "removeAllQuotes": "false",
+        "removeAllWhitespace": "false",
+        "removeCustomCharacters": "true",
+        "removeCustomValue": "false",
+        "removeLeadingAndTrailingPunctuation": "false",
+        "removeLeadingAndTrailingQuotes": "false",
+        "removeLeadingAndTrailingWhitespace": "false",
+        "removeLetters": "false",
+        "removeNumbers": "false",
+        "removeSpecialCharacters": "false",
+        "sourceColumn": "Edition Statement"
+      }
+    }
+  },
+  {
+    "Action": {
+      "Operation": "FILL_WITH_EMPTY",
+      "Parameters": {
+        "sourceColumn": "Edition Statement"
+      }
+    }
+  }
+]
